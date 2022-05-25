@@ -2,7 +2,10 @@ import React from 'react';
 import Coin from './Coin';
 import styles from '../styles/Coins.module.css';
 
-const Coins = ({ coins }) => {
+const Coins = ({ coins, value, setValue }) => {
+
+    const searchCoin = coins.filter(coin => coin.name.toLowerCase().includes(value.toLowerCase()));
+
     return (
         <div className={styles.container} >
             <div className={styles.heading} >
@@ -12,7 +15,7 @@ const Coins = ({ coins }) => {
                 <p className={styles.list} >Total volume</p>
                 <p className={styles.list} >Market Cap</p>
             </div>
-            {coins?.map(coin => <Coin key={coin.id} id={coin.id} marketcap={coin.market_cap.toLocaleString()} image={coin.image} symbol={coin.symbol} name={coin.name} price={coin.current_price.toLocaleString()} change={coin.price_change_percentage_24h.toFixed(2)}  volume={coin.total_volume.toLocaleString()} rank={coin.market_cap_rank} />)}
+            {searchCoin?.map(coin => <Coin key={coin.id} coins={coins} setValue={setValue} id={coin.id} marketcap={coin.market_cap.toLocaleString()} image={coin.image} symbol={coin.symbol} name={coin.name} price={coin.current_price.toLocaleString()} change={coin.price_change_percentage_24h.toFixed(2)}  volume={coin.total_volume.toLocaleString()} rank={coin.market_cap_rank} />)}
         </div>
     );
 };

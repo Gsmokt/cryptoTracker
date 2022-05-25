@@ -1,13 +1,14 @@
 import React from 'react';
 import styles from '../styles/Coin.module.css';
 import { useNavigate } from "react-router-dom";
+import Coins from './Coins';
 
-const Coin = ({ id, image, volume, price, symbol, name, change, marketcap }) => {
+const Coin = ({ id, image, volume, price, symbol, name, change, marketcap, setValue, coins }) => {
 
     const navigate = useNavigate();
 
     return (
-        <div onClick={() => navigate(`/coin/${id}`)} className={styles.wrapper} >
+        <div onClick={() => {navigate(`/coin/${id}`); setValue('')}} className={styles.wrapper} >
             <div className={styles.logo} >
             <img src={image} />
                 <div>

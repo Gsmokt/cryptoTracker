@@ -31,10 +31,71 @@
     color: #DCDCDC;
 }
 
+.icon {
+    position: relative;
+}
+
 .icon:hover {
     color: #DCDCDC;
     cursor: pointer;
 }
+
+.show {
+    display: block;
+    position: absolute;
+    background-color: white;
+    left: 10px;
+    top: 100%;
+}
+
+.hide {
+    display: none;
+}
+
+.drawerWrapper {
+    background-color: aqua;
+}
+
+.drawer {
+    width: 200px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 5fr 1fr;
+}
+
+.list1 {
+    color: #DCDCDC;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 22px;
+}
+
+.list3 {
+    color: #DCDCDC;
+    display: flex;
+    align-items: center;
+    justify-content: space-around; 
+}
+
+.list3 button {
+    background-color: inherit;
+    font-family: inherit;
+    font-size: 18px;
+    color: #DCDCDC;
+    padding: 6px;
+    border: 3px solid #DCDCDC;
+    border-radius: 6px;
+}
+
+.list3 button:hover {
+    color: white;
+    border-color: white;
+}
+
 
 @media only screen and (max-width: 495px) {
     .navbar {

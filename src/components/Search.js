@@ -2,11 +2,12 @@ import React from 'react';
 import { FaBitcoin } from 'react-icons/fa';
 import styles from '../styles/Search.module.css';
 
-const Search = () => {
+const Search = ({ setValue }) => {
+
     return (
         <div className={styles.wrapper} >
             <FaBitcoin size={110} />
-            <input type='text' placeholder='Search...' />
+            <input onChange={(e) => setValue(e.target.value)} type='text' placeholder='Search...' />
         </div>
     );
 };

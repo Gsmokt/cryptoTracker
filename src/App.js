@@ -11,6 +11,8 @@ function App() {
 
   const [coins, setCoins] = useState([]);
 
+  const [value, setValue] = useState('');
+
   const getCoints = async () => {
     try{
     const { data } = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=30&page=1&sparkline=false');
@@ -28,10 +30,8 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<><Search /><Coins coins={coins} /></>} />
-        <Route path='/coin' element={<CoinDetails />}>
-          <Route path=':id' element={<CoinDetails />} />
-        </Route>
+        <Route path="/" element={<><Search setValue={setValue} /><Coins setValue={setValue} value={value} coins={coins} /></>} />
+        <Route path='/coin/:id' element={<CoinDetails />} />
       </Routes>
       
     </>
