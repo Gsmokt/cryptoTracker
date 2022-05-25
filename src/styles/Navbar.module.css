@@ -1,0 +1,47 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px 0px 20px;
+}
+
+.navbar h1 {
+    flex-grow: 5;
+}
+
+.login {
+    display: flex;
+    justify-content: space-evenly;
+    flex-grow: 1;
+}
+
+.login button {
+    background-color: inherit;
+    border: none;
+    color: white;
+    font-family: 'Rubik', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #f4f4f4;
+}
+
+.login button:hover {
+    cursor: pointer;
+    color: #DCDCDC;
+}
+
+.icon:hover {
+    color: #DCDCDC;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 495px) {
+    .navbar {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        justify-content: center;
+        align-items: center;
+    }
+}

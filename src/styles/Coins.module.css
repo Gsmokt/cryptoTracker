@@ -1,0 +1,54 @@
+.container {
+    max-width: 1140px;
+    margin: auto;
+}
+
+.heading {
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: #26272b;
+    box-shadow: 0px 0px 12px #18191b;
+    border-radius: 8px;
+    margin: 2rem 1rem;
+    padding: .7rem 1rem;
+    font-weight: 700;
+}
+
+.list {
+    text-align: right;
+}
+
+.coinname {
+    
+    text-align: left;
+}
+
+
+img {
+    height: 40px;
+    margin-right: 8px;
+    width: auto;
+}
+
+@media screen and (max-width: 875px) {
+    .heading {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .list:last-child {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 690px) {
+    .heading {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .list:nth-child(4) {
+        display: none;
+    }
+}
