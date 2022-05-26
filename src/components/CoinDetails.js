@@ -10,9 +10,6 @@ import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Alert from '@mui/material/Alert';
 import Collapse from '@mui/material/Collapse';
-import CloseIcon from '@mui/icons-material/Close';
-import IconButton from '@mui/material/IconButton';
-
 
 
 const CoinDetails = () => {
@@ -23,15 +20,11 @@ const CoinDetails = () => {
 
     const [user] = useAuthState(auth);
 
-    const [watchlist, setWatchlist] = useState([]);
-
     const context = useContext(AppContext);
 
     const params = useParams();
 
     const [coin, setCoin] = useState({});
-
-    const coinIn = watchlist.includes(coin.id);
 
     const [history, setHistory] = useState([]);
 
@@ -40,7 +33,6 @@ const CoinDetails = () => {
             const res = await fetch(`https://api.coingecko.com/api/v3/coins/${params.id}/market_chart?vs_currency=eur&days=14&interval=daily`);
             const data = await res.json();
             setHistory([...data.prices]);
-            console.log(history)
             }catch(err){
             console.log(err);
             }
@@ -49,10 +41,7 @@ const CoinDetails = () => {
     const getCoin = async () => {
         try{
         const { data }  = await axios.get(`https://api.coingecko.com/api/v3/coins/${params.id}`);
-        
         setCoin(data);
-
-        console.log(history)
         }catch(err){
         console.log(err);
         }
@@ -60,11 +49,12 @@ const CoinDetails = () => {
 
     const addToWatchList = async () => {
         try{
-          await setDoc(doc(db, 'watchlist', user?.uid), {coins: watchlist ? [...watchlist, coin?.id] : [coin?.id]});
+          await setDoc(doc(db, 'watchlist', user?.uid), {coins: context.watchlist ? [...context.watchlist, coin?.id] : [coin?.id]});
           
         }catch( error ){
               console.log(error);
         }
+        context.setWatchlist([...context.watchlist, coin.id]);
         setOpen(true);
         setTimeout(() => {
           setOpen(false);
@@ -74,7 +64,7 @@ const CoinDetails = () => {
       const removeFromWatchList = async () => {
         const ref = doc(db, 'watchlist', user?.uid);
         try{
-          await setDoc(ref, {coins: watchlist.filter(e => e !== coin.id)});
+          await setDoc(ref, {coins: context.watchlist.filter(e => e !== coin.id)});
         }catch( error ){
           console.log(error);
         }
@@ -92,14 +82,14 @@ const CoinDetails = () => {
       
             var unsubscribe = onSnapshot(doc(db, 'watchlist', user?.uid), (coin) => {
               if(coin.exists()){
-                setWatchlist(coin.data().coins);
+                context.setWatchlist(coin.data().coins);
               }
             })
             return () => {
               unsubscribe();
             }
           }
-      }, [coin])
+      }, [params.id])
 
     return (
         <div className={styles.wrapper} >
@@ -127,7 +117,7 @@ const CoinDetails = () => {
                     <h2>30 days change: </h2>
                     {coin.market_data ? <h2>{coin.market_data.price_change_percentage_30d.toFixed(2)} %</h2> : null}
                 </div>
-                {context.isLogged && ( coinIn ? <button onClick={removeFromWatchList} className={styles.btn} >Remove from watchlist</button>  : <button onClick={addToWatchList} className={styles.btn} >Add to watchlist</button>)}
+                {context.isLogged && ( context.watchlist.includes(coin.id) ? <button onClick={removeFromWatchList} className={styles.btn} >Remove from watchlist</button>  : <button onClick={addToWatchList} className={styles.btn} >Add to watchlist</button>)}
                 <Collapse in={close}>
                   <Alert severity="error" variant="outlined" sx={{color: '#DCDCDC', mb: 2, mt: 2, ml:1 }}>
                     Removed from watchlist !

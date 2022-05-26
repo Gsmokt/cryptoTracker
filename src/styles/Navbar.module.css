@@ -74,6 +74,16 @@
     font-size: 22px;
 }
 
+.list2 {
+    overflow-y: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.list2::-webkit-scrollbar {
+    display: none;
+  }
+
 .list3 {
     color: #DCDCDC;
     display: flex;
@@ -94,6 +104,30 @@
 .list3 button:hover {
     color: white;
     border-color: white;
+}
+
+.navSection {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+    margin-bottom: 10px;
+}
+
+.navSection:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.navCoins {
+    font-size: 20px;
+}
+
+.navIcons {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
 }
 
 

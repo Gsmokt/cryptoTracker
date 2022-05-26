@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Coin from './Coin';
 import styles from '../styles/Coins.module.css';
+import { AppContext } from '../store/Store';
 
-const Coins = ({ coins, value, setValue }) => {
+const Coins = ({ value, setValue }) => {
+
+    const { coins } = useContext(AppContext);
 
     const searchCoin = coins.filter(coin => coin.name.toLowerCase().includes(value.toLowerCase()));
 
