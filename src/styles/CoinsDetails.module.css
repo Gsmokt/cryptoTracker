@@ -25,24 +25,26 @@ img {
     color: #DCDCDC;
 }
 
-.chart {
-    margin-top: 30px;
-    margin-right: 20px;
-}
-
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1200px) {
     .wrapper {
         display: grid;
         grid-template-columns: 35% 65%;
     }
     .coinDetails {
         text-align: center;
-        margin-top: 30px;
+        margin-top: 10%;
         margin-right: 30px;
+    }
+    .chart {
+        margin-top: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
     }
 }
 
-@media only screen and (min-width: 425px) and (max-width:1024px){
+@media only screen and (min-width: 425px) and (max-width:1200px){
     .wrapper {
         display: grid;
         grid-template-columns: 1fr;
@@ -53,21 +55,20 @@ img {
         margin: 30px auto;
         width: 60%;
     }
-    .chart {
-        margin: 20px 30px 10px 30px;
-    }
 }
 
-/* @media only screen and (max-width: 425px) {
+@media only screen and (min-width: 325px) and (max-width: 425px) {
     .wrapper {
         display: grid;
         grid-template-columns: 1fr;
     }
     .coinDetails {
-        display: flex;
+        text-align: center;
+        margin: 30px auto;
+        width: 60%;
     }
     .chart {
-        margin: 20px 20px 20px 20px;
+        display: none;
     }
-} */
+}
 
