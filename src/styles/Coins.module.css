@@ -4,9 +4,6 @@
 }
 
 .heading {
-    /* display: flex;
-    justify-content: space-between;
-    align-items: center; */
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     background-color: #26272b;
@@ -22,7 +19,6 @@
 }
 
 .coinname {
-    
     text-align: left;
 }
 

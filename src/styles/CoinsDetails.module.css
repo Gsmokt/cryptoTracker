@@ -32,7 +32,8 @@ img {
     }
     .coinDetails {
         text-align: center;
-        margin-top: 10%;
+        margin-top: auto;
+        margin-bottom: auto;
         margin-right: 30px;
     }
     .chart {
