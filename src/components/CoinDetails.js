@@ -86,11 +86,14 @@ const CoinDetails = () => {
     getHistory();
 
     if (user) {
-      var unsubscribe = onSnapshot(doc(db, "watchlist", user?.uid), (coin) => {
-        if (coin.exists()) {
-          context.setWatchlist(coin.data().coins);
+      const unsubscribe = onSnapshot(
+        doc(db, "watchlist", user?.uid),
+        (coin) => {
+          if (coin.exists()) {
+            context.setWatchlist(coin.data().coins);
+          }
         }
-      });
+      );
       return () => {
         unsubscribe();
       };
