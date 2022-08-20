@@ -27,38 +27,23 @@ const CoinDetails = () => {
   const [history, setHistory] = useState([]);
 
   const getHistory = async () => {
-    try {
-      const res = await fetch(
-        `https://api.coingecko.com/api/v3/coins/${params.id}/market_chart?vs_currency=eur&days=14&interval=daily`
-      );
-      const data = await res.json();
-      setHistory([...data.prices]);
-    } catch (err) {
-      console.log(err);
-    }
+    const { data } = await axios.get(
+      `https://api.coingecko.com/api/v3/coins/${params.id}/market_chart?vs_currency=eur&days=14&interval=daily`
+    );
+    setHistory([...data.prices]);
   };
 
   const getCoin = async () => {
-    try {
-      const { data } = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/${params.id}`
-      );
-      setCoin(data);
-    } catch (err) {
-      console.log(err);
-    }
+    const { data } = await axios.get(
+      `https://api.coingecko.com/api/v3/coins/${params.id}`
+    );
+    setCoin(data);
   };
 
   const addToWatchList = async () => {
-    try {
-      await setDoc(doc(db, "watchlist", user?.uid), {
-        coins: context.watchlist
-          ? [...context.watchlist, coin?.id]
-          : [coin?.id],
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    await setDoc(doc(db, "watchlist", user?.uid), {
+      coins: context.watchlist ? [...context.watchlist, coin?.id] : [coin?.id],
+    });
     context.setWatchlist([...context.watchlist, coin.id]);
     setOpen(true);
     setTimeout(() => {
@@ -68,13 +53,9 @@ const CoinDetails = () => {
 
   const removeFromWatchList = async () => {
     const ref = doc(db, "watchlist", user?.uid);
-    try {
-      await setDoc(ref, {
-        coins: context.watchlist.filter((e) => e !== coin.id),
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    await setDoc(ref, {
+      coins: context.watchlist.filter((e) => e !== coin.id),
+    });
     setClose(true);
     setTimeout(() => {
       setClose(false);

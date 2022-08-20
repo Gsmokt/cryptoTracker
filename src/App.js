@@ -13,14 +13,10 @@ function App() {
   const [value, setValue] = useState("");
 
   const getCoints = async () => {
-    try {
-      const { data } = await axios.get(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=30&page=1&sparkline=false"
-      );
-      setCoins(data);
-    } catch (err) {
-      console.log(err);
-    }
+    const { data } = await axios.get(
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=30&page=1&sparkline=false"
+    );
+    setCoins(data);
   };
 
   useEffect(() => {
